@@ -1,110 +1,130 @@
-import { useState, useRef } from "react"
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
-const movies = [
+const projects = [
   {
-    title: "Movie One",
-    work: "ST",
-    image: "/movies/movie1.jpg",
+    title: "Attack on Titan",
+    platform: "Amazon Prime",
+    languages: ["Tamil"],
+    description: "Handled dubbing for Tamil version of Attack on Titan.",
+    image: "/Attack-on-Titan---Season-1---Official-Poster.webp",
   },
   {
-    title: "Movie Two",
-    work: "VO",
-    image: "/movies/movie2.jpg",
+    title: "Ghost in the Shell",
+    platform: "Amazon Prime",
+    languages: ["Tamil", "Telugu"],
+    description: "Dubbing for Tamil and Telugu versions.",
+    image: "/ghost in shell.webp",
   },
   {
-    title: "Movie Three",
-    work: "TR",
-    image: "/movies/movie3.jpg",
+    title: "Shangri-La Frontier",
+    platform: "Amazon Prime",
+    languages: ["Kannada"],
+    description: "Kannada dubbing work for Shangri-La Frontier.",
+    image: "/Shangri-La Frontier- .webp",
   },
   {
-    title: "Movie Four",
-    work: "TS",
-    image: "/movies/movie4.jpg",
+    title: "Multiple Shows",
+    platform: "Kuku TV",
+    languages: ["Tamil", "Telugu", "Malayalam", "Kannada"],
+    description: "Managed multiple regional dubs for Kuku TV platform.",
+    image: "/kuku tv.webp",
   },
-  {
-    title: "Movie Five",
-    work: "VM",
-    image: "/movies/movie5.jpg",
-  },
-  {
-    title: "Movie Six",
-    work: "DD",
-    image: "/movies/movie6.jpg",
-  },
-  {
-    title: "Movie Seven",
-    work: "KD",
-    image: "/movies/movie7.jpg",
-  },
-  {
-    title: "Movie Eight",
-    work: "NR",
-    image: "/movies/movie8.jpg",
-  },
-  {
-    title: "Movie Nine",
-    work: "LS",
-    image: "/movies/movie9.jpg",
-  },
-]
+];
+
+export function scrollToProjects() {
+  const section = document.getElementById("languages");
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+}
 
 export default function ProjectShowcase() {
-  const [showAll, setShowAll] = useState(false)
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, margin: "-100px" })
+  const [activeLanguage, setActiveLanguage] = useState("All");
 
-  const visibleMovies = showAll ? movies : movies.slice(0, 6)
+  const filtered =
+    activeLanguage === "All"
+      ? projects
+      : projects.filter((p) => p.languages.includes(activeLanguage));
 
   return (
-    <section id="languages" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Project Work
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            A glimpse into our creative journey
-          </p>
-        </motion.div>
+    <div id="languages" className="p-4 max-w-5xl mx-auto scroll-smooth">
+      <h1 className="text-4xl font-bold text-center mb-4">
+        🎬 Precision. Emotion. Clarity. In Every Dub.
+      </h1>
+      <p className="text-center mb-8 text-muted-foreground">
+        Worked on impactful titles for global platforms across 4+ languages.
+      </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {visibleMovies.map((movie, index) => (
-            <motion.div
-              key={movie.title}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-100 rounded-2xl p-4 shadow hover:shadow-md transition-all duration-300 text-center"
-            >
-              <img
-                src={movie.image}
-                alt={movie.title}
-                className="w-full h-48 object-cover rounded-xl mb-3"
-              />
-              <h3 className="text-lg font-semibold text-gray-900">{movie.title}</h3>
-              <p className="text-sm text-gray-600">{movie.work}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="mt-8 text-center">
+      {/* Language Filters */}
+      <div className="flex justify-center gap-4 mb-10 overflow-x-auto">
+        {["All", "Tamil", "Telugu", "Kannada", "Malayalam"].map((lang) => (
           <button
-            onClick={() => setShowAll(!showAll)}
-            className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors"
+            key={lang}
+            onClick={() => setActiveLanguage(lang)}
+            className={`px-4 py-2 whitespace-nowrap rounded-full border transition-all duration-300 ${
+              activeLanguage === lang
+                ? "bg-black text-white"
+                : "bg-white text-black hover:bg-gray-100"
+            }`}
           >
-            {showAll ? "Show Less" : "Load More"}
+            {lang}
           </button>
-        </div>
+        ))}
       </div>
-    </section>
-  )
+
+      {/* Grid Layout Project Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {filtered.map((proj, index) => (
+          <Dialog key={index}>
+            <DialogTrigger>
+              <Card className="shadow-md hover:shadow-xl transition-all max-w-[500px] mx-auto">
+                <div className="h-[200px] w-full overflow-hidden rounded-t-xl">
+                  <img
+                    src={proj.image}
+                    alt={proj.title}
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+                <CardContent className="p-4 h-[120px] flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold mb-1 text-center">
+                      {proj.title}
+                    </h3>
+                    <p className="text-muted-foreground text-center text-sm">
+                      {proj.platform}
+                    </p>
+                  </div>
+                  <div className="flex gap-2 mt-2 flex-wrap justify-center">
+                    {proj.languages.map((lang) => (
+                      <span
+                        key={lang}
+                        className="bg-gray-200 text-sm px-2 py-1 rounded-full"
+                      >
+                        {lang}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogTitle>{proj.title}</DialogTitle>
+              <p className="mt-2 mb-4">{proj.description}</p>
+              <p className="text-muted-foreground text-sm">
+                Platform: {proj.platform} <br />
+                Languages: {proj.languages.join(", ")}
+              </p>
+            </DialogContent>
+          </Dialog>
+        ))}
+      </div>
+    </div>
+  );
 }

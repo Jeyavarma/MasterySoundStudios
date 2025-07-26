@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react"
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
-import WhoWeAre from "@/components/who-we-are"
-import Services from "@/components/services"
-import LanguageIcons from "@/components/language-icons"
-import WhyChooseUs from "@/components/why-choose-us"
-import Testimonials from "@/components/testimonials"
-import JoinUs from "@/components/join-us"
-import ContactForm from "@/components/contact-form"
+import dynamic from "next/dynamic"
+
+const WhoWeAre = dynamic(() => import("@/components/who-we-are"), { ssr: false, loading: () => <div>Loading...</div> })
+const Services = dynamic(() => import("@/components/services"), { ssr: false, loading: () => <div>Loading...</div> })
+const WhyChooseUs = dynamic(() => import("@/components/why-choose-us"), { ssr: false, loading: () => <div>Loading...</div> })
+const LanguageIcons = dynamic(() => import("@/components/language-icons"), { ssr: false, loading: () => <div>Loading...</div> })
+const Testimonials = dynamic(() => import("@/components/testimonials"), { ssr: false, loading: () => <div>Loading...</div> })
+const JoinUs = dynamic(() => import("@/components/join-us"), { ssr: false, loading: () => <div>Loading...</div> })
+const ContactForm = dynamic(() => import("@/components/contact-form"), { ssr: false, loading: () => <div>Loading...</div> })
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("hero")
@@ -22,7 +24,7 @@ export default function Home() {
         "services",
         "languages",
         "why-choose-us",
-        "testimonials",
+        //"testimonials",
         "join-us",
         "contact",
       ]
@@ -45,15 +47,17 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      className="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))] transition-colors duration-300"
+    >
       <Navbar activeSection={activeSection} />
       <main>
         <Hero />
         <WhoWeAre />
-        <Services /> 
+        <Services />
         <WhyChooseUs />
         <LanguageIcons />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <JoinUs />
         <ContactForm />
       </main>

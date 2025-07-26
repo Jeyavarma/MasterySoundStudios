@@ -1,20 +1,25 @@
-import type { Metadata } from 'next'
-import './globals.css'
+// app/layout.tsx
 
-export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
-}
+import "./globals.css"; // this includes your Tailwind setup
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Your App",
+  description: "Your Description",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${inter.className} bg-gray-100 text-black`}>
+        {children}
+      </body>
     </html>
-  )
+  );
 }

@@ -15,7 +15,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
     { name: "service", href: "#services" },
     { name: "why mastery works", href: "#why-choose-us" },
     { name: "our projects", href: "#languages" },
-    { name: "see what our clients say", href: "#testimonials" },
+    //{ name: "see what our clients say", href: "#testimonials" },
     { name: "hiring", href: "#join-us" },
     { name: "contact", href: "#contact" },
   ]
@@ -31,7 +31,9 @@ export default function Navbar({ activeSection }: NavbarProps) {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const yOffset = -100
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: "smooth" })
     }
     setIsMobileMenuOpen(false)
   }
@@ -44,7 +46,6 @@ export default function Navbar({ activeSection }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo + Brand Name */}
           <div
             className="flex items-center gap-2 sm:gap-3 cursor-pointer"
             onClick={() => scrollToSection("#hero")}
@@ -55,7 +56,6 @@ export default function Navbar({ activeSection }: NavbarProps) {
             </span>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
             {navItems.map((item) => (
               <button
@@ -74,7 +74,6 @@ export default function Navbar({ activeSection }: NavbarProps) {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -85,7 +84,6 @@ export default function Navbar({ activeSection }: NavbarProps) {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white border-t border-gray-200">
             <div className="px-4 pt-3 pb-4 space-y-1">

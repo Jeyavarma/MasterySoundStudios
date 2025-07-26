@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 
 export default function Hero() {
   const scrollToProjects = () => {
-    const element = document.getElementById("languages") 
+    const element = document.getElementById("languages")
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
@@ -14,7 +14,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white pt-16"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-white pt-36"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
@@ -45,36 +45,9 @@ export default function Hero() {
             onClick={scrollToProjects}
             className="inline-flex items-center px-8 py-4 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
-            Click to Discover Our Creations
+            Click to Discover Our Projects
             <ArrowRight className="ml-2" size={20} />
           </motion.button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="mt-16"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-3xl blur-3xl opacity-20"></div>
-            <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-gray-200">
-              <div className="grid grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="text-3xl font-bold text-gray-900">10+</div>
-                  <div className="text-gray-600">Languages</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-gray-900">150+</div>
-                  <div className="text-gray-600">Projects</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-gray-900">24/7</div>
-                  <div className="text-gray-600">Support</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

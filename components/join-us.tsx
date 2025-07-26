@@ -35,7 +35,7 @@ export default function JoinUs() {
   ]
 
   return (
-    <section id="join-us" className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section id="join-us" className="py-20 bg-gray-100">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={ref}
@@ -76,7 +76,6 @@ export default function JoinUs() {
               </div>
 
               <h3 className="text-2xl font-bold text-gray-900 mb-4">{role.title}</h3>
-
               <p className="text-gray-600 leading-relaxed">{role.description}</p>
             </motion.div>
           ))}

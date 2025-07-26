@@ -76,14 +76,5 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-
-    /* Optional background design */
-    background-image: url('/logo.png');
-    background-repeat: repeat;
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-
-    opacity: 0.97;
   }
 }

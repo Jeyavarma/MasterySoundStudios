@@ -63,10 +63,10 @@ export default function Navbar({ activeSection }: NavbarProps) {
                 onClick={() => scrollToSection(item.href)}
                 className={`px-3 py-2 text-sm lg:text-base font-medium transition-all duration-300 rounded-full ${
                   item.name === "contact"
-                    ? "bg-black text-white hover:bg-gray-900"
+                    ? "bg-black text-white hover:bg-blue-700"
                     : activeSection === item.href.slice(1)
                     ? "text-black font-semibold"
-                    : "text-gray-700 hover:text-gray-900"
+                    : "text-gray-600 hover:text-gray-900 "
                 }`}
               >
                 {item.name}
@@ -93,7 +93,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
                   onClick={() => scrollToSection(item.href)}
                   className={`block w-full text-left px-4 py-2 text-base font-medium rounded-full transition-all ${
                     item.name === "contact"
-                      ? "bg-black text-white hover:bg-gray-900"
+                      ? "bg-black text-white hover:bg-blue-100"
                       : "text-gray-700 hover:text-gray-900"
                   }`}
                 >

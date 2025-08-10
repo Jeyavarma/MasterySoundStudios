@@ -57,7 +57,7 @@ export default function Home() {
         <Services />
         <WhyChooseUs />
         <LanguageIcons />
-        {/* <Testimonials /> */}
+        {/*<Testimonials />*/} 
         <JoinUs />
         <ContactForm />
       </main>

@@ -1,19 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export', 
+  images: {
+    unoptimized: true, 
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    unoptimized: true,
-  },
-  experimental: {
-    // Allow access from any IP address 
-    // for testing purpose
-    allowedDevOrigins: ['http://localhost:3000', 'http://192.168.162.225:3000', '*'],
-  },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

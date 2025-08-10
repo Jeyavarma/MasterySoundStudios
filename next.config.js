@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', 
+  output: 'export',
   images: {
-    unoptimized: true, 
+    unoptimized: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -10,6 +10,8 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  basePath: '/MasterySoundStudios',
+  assetPrefix: '/MasterySoundStudios/',
 };
 
 module.exports = nextConfig;

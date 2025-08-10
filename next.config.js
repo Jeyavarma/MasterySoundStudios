@@ -10,8 +10,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  basePath: '/MasterySoundStudios',
-  assetPrefix: '/MasterySoundStudios/',
 };
 
 module.exports = nextConfig;
